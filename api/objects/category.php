@@ -17,5 +17,19 @@ class Category
         $this->conn = $db;
     }
 
-    // здесь будет метод для получение всех категорий товаров
+    // метод для получения всех категорий товаров
+    public function readAll()
+    {
+        $query = "SELECT
+                id, name, description
+            FROM
+                " . $this->table_name . "
+            ORDER BY
+                name";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
