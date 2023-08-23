@@ -48,3 +48,4 @@ $.getJSON("http://rest-api/api/product/read_one.php?id=" + id, data => {
 
 // Изменяем заголовок страницы
     changePageTitle("Просмотр товара");
+
