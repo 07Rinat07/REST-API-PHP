@@ -1,7 +1,7 @@
 jQuery(($) => {
 
     // Показать html форму при нажатии кнопки «создать товар»
-    $(document).on("click", ".create-product-button", () => {
+    $(document).on("click", ".create-products-button", () => {
         // Перебор возвращаемого списка данных и создание списка выбора
         let categories_options_html=`<select name="category_id" class="form-control">`;
 
@@ -18,7 +18,7 @@ jQuery(($) => {
     });
 
     // Будет работать, если создана форма товара
-    $(document).on("submit", "#create-product-form", function () {
+    $(document).on("submit", "#create-products-form", function () {
 
         // Получение данных формы
         let form_data=JSON.stringify($(this).serializeObject());

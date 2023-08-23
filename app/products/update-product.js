@@ -1,7 +1,7 @@
 jQuery($ => {
 
     // Показывать HTML форму при нажатии кнопки «Обновить товар»
-    $(document).on("click", ".update-product-button", function () {
+    $(document).on("click", ".update-products-button", function () {
 
         // Получаем ID товара
         const id = $(this).attr("data-id");
@@ -34,7 +34,7 @@ jQuery($ => {
 
                 categories_options_html += `</select>`;
 
-                // Сохраним html в переменной «update product»
+                // Сохраним html в переменной «update products»
                 let update_product_html = `
     <div id="read-products" class="btn btn-primary pull-right m-b-15px read-products-button">
         <span class="glyphicon glyphicon-list"></span> Все товары
@@ -91,7 +91,7 @@ jQuery($ => {
     });
 
     // Будет запущен при отправке формы обновления товара
-    $(document).on("submit", "#update-product-form", function() {
+    $(document).on("submit", "#update-products-form", function() {
 
         // Получаем данные формы
         const form_data = JSON.stringify($(this).serializeObject());

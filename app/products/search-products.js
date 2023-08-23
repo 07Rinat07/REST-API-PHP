@@ -1,7 +1,7 @@
 jQuery($ => {
 
     // Когда была нажата кнопка «Поиск товаров»
-    $(document).on("submit", "#search-product-form", function () {
+    $(document).on("submit", "#search-products-form", function () {
 
         // Получаем ключевые слова для поиска
         const keywords = $(this).find("input[name='keywords']").val();
@@ -9,7 +9,7 @@ jQuery($ => {
         // Получаем данные из API на основе поисковых ключевых слов
         $.getJSON("http://rest-api/api/product/search.php?s=" + keywords, data => {
 
-            // Шаблон в product.js
+            // Шаблон в products.js
             readProductsTemplate(data, keywords);
 
             // Изменяем title

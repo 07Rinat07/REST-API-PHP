@@ -2,9 +2,9 @@
 
 class Product
 {
-    // подключение к базе данных и таблице "product"
+    // подключение к базе данных и таблице "products"
     private $conn;
-    private $table_name = "product";
+    private $table_name = "products";
 
     // свойства объекта
     public $id;

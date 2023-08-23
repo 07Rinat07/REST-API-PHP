@@ -1,7 +1,7 @@
 jQuery($ => {
 
     // Обрабатываем нажатие кнопки «Просмотр товара»
-    $(document).on("click", ".read-one-product-button", function () {
+    $(document).on("click", ".read-one-products-button", function () {
 
         // Получаем ID товара
         const id = $(this).attr("data-id");
