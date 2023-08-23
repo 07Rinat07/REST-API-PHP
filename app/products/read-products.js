@@ -10,5 +10,8 @@ $(document).on("click", ".read-products-button", () => {
 
 // Функция для показа списка товаров
 function showProducts() {
+    // Получить список товаров из API
+    $.getJSON("http://rest-api/api/product/read.php", data => {
 
+    });
 }
