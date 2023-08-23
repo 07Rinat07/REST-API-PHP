@@ -4,4 +4,7 @@ jQuery(($) => {
     showProducts();
 });
 
-// Здесь будет метод showProducts()
+// При нажатии кнопки
+$(document).on("click", ".read-products-button", () => {
+    showProducts();
+});
