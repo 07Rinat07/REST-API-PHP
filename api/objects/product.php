@@ -21,5 +21,25 @@ class Product
         $this->conn = $db;
     }
 
-    // здесь будет метод read()
+    // метод для получения товаров
+    function read()
+    {
+        // выбираем все записи
+        $query = "SELECT
+        c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+    FROM
+        " . $this->table_name . " p
+        LEFT JOIN
+            categories c
+                ON p.category_id = c.id
+    ORDER BY
+        p.created DESC";
+
+        // подготовка запроса
+        $stmt = $this->conn->prepare($query);
+
+        // выполняем запрос
+        $stmt->execute();
+        return $stmt;
+    }
 }
