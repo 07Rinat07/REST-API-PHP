@@ -15,7 +15,27 @@ jQuery($ => {
             const category_id = data.category_id;
             const category_name = data.category_name;
 
-            // Здесь будет загрузка списка категорий
+            // Загрузка списка категорий
+            $.getJSON("http://rest-api/api/category/read.php", data => {
+
+                // Строим список выбора
+                // Перебор полученного списка данных
+                let categories_options_html = `<select name="category_id" class="form-control">`;
+
+                $.each(data.records, (key, val) => {
+
+                    // Опция предварительного выбора - это идентификатор категории
+                    if (val.id == category_id) {
+                        categories_options_html += `<option value="` + val.id + `" selected>` + val.name + `</option>`;
+                    } else {
+                        categories_options_html += `<option value="` + val.id + `">` + val.name + `</option>`;
+                    }
+                });
+
+                categories_options_html += `</select>`;
+
+                // Здесь будет HTML для обновления товара
+            });
         });
     });
 
