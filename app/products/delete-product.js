@@ -20,7 +20,25 @@ jQuery($ => {
             },
             callback: result => {
 
-                // Здесь будет запрос на удаление
+                if (result == true) {
+
+                    // Отправим запрос на удаление в API / удаленный сервер
+                    $.ajax({
+                        url: "http://rest-api/api/product/delete.php",
+                        type : "POST",
+                        dataType : "json",
+                        data : JSON.stringify({ id: product_id }),
+                        success : result => {
+
+                            // Покажем список всех товаров
+                            showProducts();
+                        },
+                        error: (xhr, resp, text) => {
+                            console.log(xhr, resp, text);
+                        }
+                    });
+
+                }
             }
         });
     });
