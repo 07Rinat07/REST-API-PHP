@@ -90,5 +90,30 @@ jQuery($ => {
         });
     });
 
-    // Здесь будет обработчик для обновления товара
+    // Будет запущен при отправке формы обновления товара
+    $(document).on("submit", "#update-product-form", function() {
+
+        // Получаем данные формы
+        const form_data = JSON.stringify($(this).serializeObject());
+
+        // Отправка данных формы в API
+        $.ajax({
+            url: "http://rest-api/api/product/update.php",
+            type : "POST",
+            contentType : "application/json",
+            data : form_data,
+            success : result => {
+
+                // Товар был успешно обновлён, возврат к списку товаров
+                showProducts();
+            },
+            error: (xhr, resp, text) => {
+
+                // Вывод ошибки в консоль
+                console.log(xhr, resp, text);
+            }
+        });
+
+        return false;
+    });
 });
