@@ -17,7 +17,32 @@ jQuery(($) => {
         });
     });
 
-    // Здесь будет обработчик «Создать форму товара»
+    // Будет работать, если создана форма товара
+    $(document).on("submit", "#create-product-form", function () {
+
+        // Получение данных формы
+        let form_data=JSON.stringify($(this).serializeObject());
+
+        // Отправка данных формы в API
+        $.ajax({
+            url: "http://rest-api/api/product/create.php",
+            type : "POST",
+            contentType : "application/json",
+            data : form_data,
+            success : result => {
+
+                // Товар был создан, вернуться к списку товаров
+                showProducts();
+            },
+            error: (xhr, resp, text) => {
+
+                // Вывести ошибку в консоль
+                console.log(xhr, resp, text);
+            }
+        });
+
+        return false;
+    });
 });
 let create_product_html=`
 
