@@ -9,7 +9,7 @@ jQuery($ => {
         // Получаем данные из API на основе поисковых ключевых слов
         $.getJSON("http://rest-api/api/product/search.php?s=" + keywords, data => {
 
-            // Шаблон в products.js
+            // Шаблон в product.js
             readProductsTemplate(data, keywords);
 
             // Изменяем title
