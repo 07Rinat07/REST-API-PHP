@@ -229,4 +229,16 @@ class Product
         // вернём значения из базы данных
         return $stmt;
     }
+    // данный метод возвращает кол-во товаров
+    public function count()
+    {
+        $query = "SELECT COUNT(*) as total_rows FROM " . $this->table_name . "";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row["total_rows"];
+    }
 }
