@@ -62,3 +62,8 @@ let create_product_html=`
 
     </table>
 </form>`;
+// Вставка html в «page-content» нашего приложения
+$("#page-content").html(create_product_html);
+
+// Изменяем тайтл
+changePageTitle("Создание товара");
