@@ -43,3 +43,8 @@ $.getJSON("http://rest-api/api/product/read_one.php?id=" + id, data => {
     </tr>
 
 </table>`;
+// Вставка HTML в «page-content» нашего приложения
+    $("#page-content").html(read_one_product_html);
+
+// Изменяем заголовок страницы
+    changePageTitle("Просмотр товара");
