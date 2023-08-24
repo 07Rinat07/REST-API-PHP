@@ -1,51 +1,67 @@
-jQuery($ => {
+jQuery(($) => {
 
-    // Обрабатываем нажатие кнопки «Просмотр товара»
-    $(document).on("click", ".read-one-products-button", function () {
-
-        // Получаем ID товара
-        const id = $(this).attr("data-id");
-    });
-
+    // Показать список товаров при первой загрузке
+    showProducts();
 });
-// Чтение записи товара на основе данного идентификатора
-$.getJSON("http://rest-api/api/product/read_one.php?id=" + id, data => {
+// При нажатии кнопки
+$(document).on("click", ".read-products-button", () => {
+    showProducts();
+});
+// Функция для показа списка товаров
+function showProducts() {
+// Получить список товаров из API
+    $.getJSON("http://REST-API-PHP/api/product/read.php", data => {
+        // HTML для списка товаров
+        let read_products_html = `
 
-    // Начало HTML
-    let read_one_product_html = `
-    
-    <!-- При нажатии будем отображать список товаров -->
-    <div id="read-products" class="btn btn-primary pull-right m-b-15px read-products-button">
-        <span class="glyphicon glyphicon-list"></span> Все товары
+    <!-- При нажатии загружается форма создания товара -->
+    <div id="create-product" class="btn btn-primary pull-right m-b-15px create-product-button">
+        <span class="glyphicon glyphicon-plus"></span> Создание товара
     </div>
-});
-<!-- Полные данные о товаре будут показаны в этой таблице -->
+    });
+}
+            <!-- Таблица товаров -->
 <table class="table table-bordered table-hover">
 
+    <!-- Создание заголовков таблицы -->
     <tr>
-        <td class="w-30-pct">Название</td>
-        <td class="w-70-pct">` + data.name + `</td>
-    </tr>
+        <th class="w-15-pct">Название</th>
+        <th class="w-10-pct">Цена</th>
+        <th class="w-15-pct">Категория</th>
+        <th class="w-25-pct text-align-center">Действие</th>
+    </tr>`;
 
-    <tr>
-        <td>Цена</td>
-        <td>` + data.price + `</td>
-    </tr>
+        // Перебор списка возвращаемых данных
+        $.each(data.records, function (key, val) {
 
-    <tr>
-        <td>Описание</td>
-        <td>` + data.description + `</td>
-    </tr>
+            // Создание новой строки таблицы для каждой записи
+            read_products_html += `
+        <tr>
+            <td>` + val.name + `</td>
+            <td>` + val.price + `</td>
+            <td>` + val.category_name + `</td>
 
-    <tr>
-        <td>Категория</td>
-        <td>` + data.category_name + `</td>
-    </tr>
+            <!-- Кнопки "действий" -->
+            <td>
+                <!-- Кнопка чтения товара -->
+                <button class="btn btn-primary m-r-10px read-one-product-button" data-id="` + val.id + `">
+                    <span class="glyphicon glyphicon-eye-open"></span> Просмотр
+                </button>
+                <!-- Кнопка редактирования -->
+                <button class="btn btn-info m-r-10px update-product-button" data-id="` + val.id + `">
+                    <span class="glyphicon glyphicon-edit"></span> Редактирование
+                </button>
+                <!-- Кнопка удаления товара -->
+                <button class="btn btn-danger delete-product-button" data-id="` + val.id + `">
+                    <span class="glyphicon glyphicon-remove"></span> Удаление
+                </button>
+            </td>
+        </tr>`;
+        });
 
-</table>`;
-// Вставка HTML в «page-content» нашего приложения
-    $("#page-content").html(read_one_product_html);
+        read_products_html += `</table> ` // Вставка в "page-content" нашего приложения
+        $("#page-content").html(read_products_html);
+        // Изменяем заголовок страницы
+        changePageTitle("Все товары");
 
-// Изменяем заголовок страницы
-    changePageTitle("Просмотр товара");
 

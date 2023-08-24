@@ -1,6 +1,7 @@
 <?php
 
 // установим HTTP-заголовки
+global $from_record_num, $records_per_page;
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 

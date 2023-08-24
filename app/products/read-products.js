@@ -1,4 +1,4 @@
-jQuery($ => {
+jQuery($) => {
 
     // Показать список товаров при первой загрузке
     showProducts();
@@ -18,10 +18,8 @@ jQuery($ => {
         showProducts(json_url);
     });
 
-});
-
 // Функция для отображения списка товаров
-function showProducts(json_url = "http://rest-api/api/product/read_paging.php") {
+function showProducts(json_url = "http://REST-API-PHP/api/product/read_paging.php") {
 
     // Получаем список товаров из API
     $.getJSON(json_url, function (data) {

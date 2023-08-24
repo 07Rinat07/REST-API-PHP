@@ -12,7 +12,7 @@ jQuery(($) => {
         categories_options_html += `</select>`;
 
         // Загрузка списка категорий
-        $.getJSON("http://rest-api/api/category/read.php", (data) => {
+        $.getJSON("http://REST-API-PHP/api/category/read.php", (data) => {
 
         });
     });
@@ -25,7 +25,7 @@ jQuery(($) => {
 
         // Отправка данных формы в API
         $.ajax({
-            url: "http://rest-api/api/product/create.php",
+            url: "http://REST-API-PHP/api/product/create.php",
             type : "POST",
             contentType : "application/json",
             data : form_data,

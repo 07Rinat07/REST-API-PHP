@@ -6,7 +6,7 @@ jQuery($ => {
         // Получаем ID товара
         const id = $(this).attr("data-id");
         // Читаем одну запись на основе данного идентификатора товара
-        $.getJSON("http://rest-api/api/product/read_one.php?id=" + id, data => {
+        $.getJSON("http://REST-API-PHP/api/product/read_one.php?id=" + id, data => {
 
             // Значения будут использоваться для заполнения нашей формы
             const name = data.name;
@@ -16,7 +16,7 @@ jQuery($ => {
             const category_name = data.category_name;
 
             // Загрузка списка категорий
-            $.getJSON("http://rest-api/api/category/read.php", data => {
+            $.getJSON("http://REST-API-PHP/api/category/read.php", data => {
 
                 // Строим список выбора
                 // Перебор полученного списка данных
@@ -98,7 +98,7 @@ jQuery($ => {
 
         // Отправка данных формы в API
         $.ajax({
-            url: "http://rest-api/api/product/update.php",
+            url: "http://REST-API-PHP/api/product/update.php",
             type : "POST",
             contentType : "application/json",
             data : form_data,
